@@ -20,10 +20,9 @@ export default function loader(url, path) {
           .then(() => {
             createFile(path + '/' + formatter(url), response);
           })
-          .catch(() => {
-            node.mkdir(path, { recursive: true }).then(() => {
-              createFile(path + '/' + formatter(url), response);
-            });
+          .catch((error) => {
+            console.error('message:', error.message);
+            throw error;
           });
       }
     })
