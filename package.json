@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "axios": "^1.9.0",
+    "cheerio": "^1.0.0",
     "commander": "^13.1.0"
   },
   "devDependencies": {
@@ -9,7 +10,8 @@
     "@stylistic/eslint-plugin": "^4.2.0",
     "eslint": "^9.25.1",
     "globals": "^16.0.0",
-    "nock": "^14.0.4"
+    "nock": "^14.0.4",
+    "vitest": "^3.1.2"
   },
   "name": "@hexlet/code",
   "description": "[![Actions Status](https://github.com/blackgoldi/fullstack-javascript-project-4/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/blackgoldi/fullstack-javascript-project-4/actions)",
@@ -20,7 +22,7 @@
     "page-loader": "bin/pageLoader.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",

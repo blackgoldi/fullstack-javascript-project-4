@@ -16,9 +16,8 @@ lintFix:
 	@npx eslint . --fix
 
 rec:
-	@rm demo.cast
 	@clear
-	@asciinema rec demo.cast
+	@asciinema rec demo.cast --overwrite
 
 recPublish:
 	@clear
