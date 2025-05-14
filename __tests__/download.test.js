@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { beforeAll, expect, test } from 'vitest';
 import nock from 'nock';
-import fsPromise, { readFile } from 'node:fs/promises';
-import { existsSync } from 'node:fs';
+import { readFile } from 'node:fs/promises';
 
 const scope = nock('https://ru.hexlet.io')
   .get('/courses')
@@ -23,7 +22,9 @@ const scope = nock('https://ru.hexlet.io')
 </html>`
   );
 
-const expectedHtml = await readFile('__fixtures__/ExpectedHtml.html', { encoding: 'utf8' });
+const expectedHtml = await readFile('__fixtures__/ExpectedHtml.html', {
+  encoding: 'utf8',
+});
 
 const path =
   'https://ru.hexlet.io/courses'
@@ -41,9 +42,9 @@ test('equialExpected', async () => {
         return response.data;
       }
     });
-  expect(data.replace(/\r\n/g, '\n')).toEqual(expectedHtml.replace(/\r\n/g, '\n'));
+  expect(data.replace(/\r\n/g, '\n')).toEqual(
+    expectedHtml.replace(/\r\n/g, '\n')
+  );
 });
 
-test('changeLinks',async()=>{
-
-});
+// test('changeLinks', async () => {});
