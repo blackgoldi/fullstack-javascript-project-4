@@ -11,26 +11,24 @@ function createFile(path, response) {
 }
 
 export default function loader(url, path) {
-  return new Promise(
-    axios
-      .get(url)
-      .then((response) => {
-        if (response.status === 200) {
-          node
-            .realpath(path)
-            .then(() => {
+  return axios
+    .get(url)
+    .then((response) => {
+      if (response.status === 200) {
+        node
+          .realpath(path)
+          .then(() => {
+            createFile(path + '/' + formatter(url), response);
+          })
+          .catch(() => {
+            node.mkdir(path, { recursive: true }).then(() => {
               createFile(path + '/' + formatter(url), response);
-            })
-            .catch(() => {
-              node.mkdir(path, { recursive: true }).then(() => {
-                createFile(path + '/' + formatter(url), response);
-              });
             });
-        }
-      })
-      .catch((error) => {
-        console.error("message:", error.message);
-        throw error;
-      })
-  );
+          });
+      }
+    })
+    .catch((error) => {
+      console.error('message:', error.message);
+      throw error;
+    });
 }
