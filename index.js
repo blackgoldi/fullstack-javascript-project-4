@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import axios from 'axios';
-import node, { mkdir } from 'node:fs/promises';
+import node from 'node:fs/promises';
 import formatter from './src/formatter.js';
 
 function createFile(path, response) {
@@ -19,7 +19,7 @@ export default function loader(url, path) {
           createFile(path + '/' + formatter(url), response);
         })
         .catch(() => {
-          mkdir(path, { recursive: true }).then(() => {
+          node.mkdir(path, { recursive: true }).then(() => {
             createFile(path + '/' + formatter(url), response);
           });
         });

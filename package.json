@@ -16,7 +16,7 @@
   "name": "@hexlet/code",
   "description": "[![Actions Status](https://github.com/blackgoldi/fullstack-javascript-project-4/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/blackgoldi/fullstack-javascript-project-4/actions)",
   "version": "1.0.0",
-  "main": "loader.js",
+  "main": "index.js",
   "type": "module",
   "bin": {
     "page-loader": "bin/pageLoader.js"
