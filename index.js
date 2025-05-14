@@ -29,6 +29,6 @@ export default function loader(url, path) {
       }
     })
     .catch((error) => {
-      console.log(error);
+      throw error;
     });
 }
