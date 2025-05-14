@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 import { Command } from 'commander';
-import loader from '../src/loader.js';
-// import findDiff from '../index.js'
+import loader from '../index.js'
 
 const program = new Command();
 
 program
-  // .description('Page loader utility')
   .usage('[options] <url>')
   .description('Page loader utility')
   .version('1.0.0')
