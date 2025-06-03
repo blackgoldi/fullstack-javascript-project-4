@@ -56,6 +56,10 @@ export default function loader(url, outputDir) {
       return response.data;
     })
     .then((data) => mkdir(resourceDir, { recursive: true }).then(() => data))
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
+    })
     .then((data) => {
       const imgPromises = [];
       const $ = cheerio.load(data);
@@ -77,6 +81,7 @@ export default function loader(url, outputDir) {
       );
     })
     .catch((error) => {
-      throw Promise.reject("rejected promise");
+      console.error("Error:", error.message);
+      throw error;
     });
 }
