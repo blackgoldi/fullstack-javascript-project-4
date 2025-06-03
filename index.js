@@ -7,6 +7,8 @@ import fs from "fs";
 import path from "node:path";
 import { mkdir, appendFile } from "node:fs/promises";
 import downloader from "./src/downloader.js";
+import { fileURLToPath } from "url";
+import { dirname, resolve } from "path";
 
 nock("https://ru.hexlet.io")
   .get("/courses")
@@ -31,8 +33,9 @@ nock("https://ru.hexlet.io")
   </body>
 </html>`
   );
-
-const imagePath = path.resolve("__fixtures__", "nodejs.png");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+const imagePath = resolve(__dirname, "__fixtures__", "nodejs.png");
 const imageBuffer = fs.readFileSync(imagePath);
 
 nock("https://ru.hexlet.io").get("/assets/professions/nodejs.png").reply(200, imageBuffer);
