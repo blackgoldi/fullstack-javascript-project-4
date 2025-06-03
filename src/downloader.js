@@ -9,14 +9,14 @@ export default function downloader(url, filePath) {
       response.data.pipe(writer);
 
       writer.on("finish", () => {
-        // console.log(`Изображение загружено и сохранено по следующему пути ${filePath}`);
+        console.log(`Изображение загружено и сохранено по следующему пути ${filePath}`);
       });
 
       writer.on("error", (err) => {
-        // console.error("Error writing file:", err);
+        console.error("Error writing file:", err);
       });
     })
     .catch((error) => {
-      // console.error("Error downloading the image:", error);
+      console.error("Error downloading the image:", error);
     });
 }

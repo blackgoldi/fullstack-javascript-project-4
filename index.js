@@ -56,6 +56,10 @@ export default function loader(url, outputDir) {
       return response.data;
     })
     .then((data) => mkdir(resourceDir, { recursive: true }).then(() => data))
+    .catch((error) => {
+      console.error("Error:", error.message);
+      throw error;
+    })
     .then((data) => {
       const imgPromises = [];
       const $ = cheerio.load(data);
@@ -72,8 +76,12 @@ export default function loader(url, outputDir) {
 
         imgPromises.push(downloader(imageUrl, imagePath).then(() => $(img).attr("src", imagePath)));
       });
-      Promise.all(imgPromises).then(() => appendFile(baseName + ".html", $.html()));
-      console.log(outputDir + "/" + baseName + ".html");
+      return Promise.all(imgPromises)
+        .then(() => appendFile(path.join(outputDir, baseName + ".html"), $.html()))
+        .catch((error) => {
+          console.error("Error:", error.message);
+          throw error; // проброс ошибки дальше, чтобы прервать цепочку
+        });
     })
     .catch((error) => {
       console.error("Error:", error.message);
