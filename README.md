@@ -3,3 +3,6 @@
 
 How to download pages?
 [![asciicast](https://asciinema.org/a/AJo8E3z4bdCq2mHburoIlQ0KM.svg)](https://asciinema.org/a/AJo8E3z4bdCq2mHburoIlQ0KM)
+
+page-loader download img and edit src in HTML
+[![asciicast](https://asciinema.org/a/721880.svg)](https://asciinema.org/a/721880)

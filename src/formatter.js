@@ -1,5 +1,3 @@
-import path from 'path';
-
 export default function formatter(url) {
   const myURL = new URL(url);
 
@@ -7,18 +5,12 @@ export default function formatter(url) {
 
   let pathname = myURL.pathname;
 
-  if (pathname.endsWith('/')) {
-    pathname += '.html';
-  }
-
   const combined = host + pathname;
 
-  const ext = path.extname(pathname) || '.html';
+  let filtered = String(combined.replace(/[./]/g, "-"));
+  if (filtered.endsWith("-", combined.length)) {
+    filtered = filtered.slice(0, combined.length - 1);
+  }
 
-  const nameOlny = combined.slice(0, -ext.length);
-
-  const safeName = nameOlny.replace(/[^a-zA-Z0-9]/g, '-');
-
-  return safeName + ext;
-  // return (myURL.host + myURL?.pathname).replaceAll(/[^a-zA-Z0-9]/g, '-');
+  return filtered;
 }
